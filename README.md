@@ -6,6 +6,14 @@ A production-grade fintech dashboard designed with real-world UX, analytics, and
 
 📂Respository: https://github.com/shreyashkumarsingh/finFlow
 
+
+✨ Key Highlights:
+- Full CRUD transaction system
+- Role-based UI (Admin / Viewer)
+- Interactive financial insights & charts
+- Persistent state with Zustand
+- Fully responsive + dark mode
+
 ---
 
 ## 🎯 How This Meets Assignment Requirements
