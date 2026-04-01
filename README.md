@@ -128,6 +128,23 @@ finance-dashboard/
 
 ---
 
+## ⬆️ Deploying to Vercel (one-click)
+
+This project is configured to deploy to Vercel as a static site. Vercel will run the `build` script and serve the `dist` directory.
+
+1. Push your repository to GitHub (if not already).
+2. Import the repository in Vercel (https://vercel.com/new).
+3. Vercel will detect a static site. If asked, set the build command to `npm run build` and the output directory to `dist`.
+
+Files added to support Vercel:
+- `vercel.json` — build config and SPA routing
+- `.vercelignore` — excludes node_modules, dist, and env files
+
+After configuring, Vercel will build and provide a production URL automatically.
+
+
+---
+
 ## 🛠 Tech Stack
 
 | Tool | Purpose |
