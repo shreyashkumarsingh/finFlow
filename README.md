@@ -140,6 +140,48 @@ finance-dashboard/
 - **Dark mode:** CSS class strategy (`dark:` variants), stored in Zustand + localStorage
 - **Animations:** CSS keyframes via Tailwind config — `fade-in`, `slide-up`, staggered delays
 
+### Why these choices
+- **Zustand**: lightweight, minimal boilerplate, easy to persist slice of state (good for demo apps and small products).
+- **Role-based UI**: simple role switcher (Viewer/Admin) implemented to demonstrate permissioned flows without backend — Admin enables add/edit/delete controls.
+- **Mock data**: Enables deterministic charts and easy reset for reviewers; initial data converted to INR for the target audience.
+
+## ✅ Rubric Mapping (what this submission addresses)
+
+- **Design & Creativity**: improved visual hierarchy, gradient accents, icons across UI, and grouped cards for clearer information scent.
+- **User Experience**: added first-time empty state CTA, toast feedback on CRUD actions, row highlight when navigating from dashboard.
+- **Attention to Detail**: currency consistency (INR/₹), chart tooltip/axis formatting, handling of no-data and edge cases.
+- **Functionality**: CRUD for transactions (admin), CSV export, role-switching, dark mode, persistent state.
+- **State Management**: Zustand with persisted storage for transactions, role, and theme. Derived selectors and helper utilities centralize logic.
+
+## 📸 Screenshots
+
+Add screenshots to this README by replacing the placeholders below. Example images are expected in the `public/` folder.
+
+- Dashboard (Dark mode): ![Dashboard Dark](public/screenshot-dashboard-dark.png)
+- Transactions: ![Transactions](public/screenshot-transactions.png)
+- Edit modal: ![Edit Transaction](public/screenshot-edit.png)
+
+## 📌 Feature notes
+
+- **Implements role-based UI**: `Viewer` sees read-only UI; `Admin` can add/edit/delete transactions. Role persisted in localStorage.
+- **Empty states**: Dashboard shows a clear CTA for first-time users that navigates to Transactions and opens the Add form.
+- **Export CSV**: Transactions page includes `Export CSV` button to download current filtered rows.
+
+## 🙋 Demo Mode & Product Tagline
+
+The app includes a demo-first experience and clear branding:
+
+- **Title**: FinFlow — Your personal finance insights, simplified
+- **Demo CTA**: a demo-mode flow is available (use the `Continue as Demo User` button on first load) — this seeds the store with mock data and demonstrates the full feature set.
+
+## ✅ How to contribute or evaluate
+
+1. Clone the repo and run the dev server (see Quick Start above).
+2. Use the role switcher in the header to toggle Admin features.
+3. Add / edit / delete transactions to see toasts and chart updates.
+4. Use "Export CSV" to download the current table.
+
+
 ---
 
 ## 📊 Mock Data

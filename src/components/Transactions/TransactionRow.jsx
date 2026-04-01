@@ -4,15 +4,25 @@ import { formatCurrency, formatDate } from '../../utils/finance'
 import { CATEGORY_COLORS, CATEGORY_ICONS } from '../../data/mockData'
 import { Badge } from '../UI'
 
-const TransactionRow = ({ transaction, isAdmin, onEdit, onDelete }) => {
+const TransactionRow = ({ transaction, isAdmin, onEdit, onDelete, flash }) => {
   const { description, category, type, amount, date } = transaction
   const [menuOpen, setMenuOpen] = useState(false)
 
   const color = CATEGORY_COLORS[category] || '#94a3b8'
   const icon = CATEGORY_ICONS[category] || '💰'
 
+  const [flashing, setFlashing] = useState(false)
+
+  React.useEffect(() => {
+    if (flash) {
+      setFlashing(true)
+      const t = setTimeout(() => setFlashing(false), 1000)
+      return () => clearTimeout(t)
+    }
+  }, [flash])
+
   return (
-    <div id={`txn-${transaction.id}`} className="flex items-center gap-3 sm:gap-4 px-4 py-3.5 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors duration-150 group relative">
+    <div id={`txn-${transaction.id}`} className={`flex items-center gap-3 sm:gap-4 px-4 py-3.5 transition-colors duration-150 group relative ${flashing ? 'flash-highlight' : ''}`}>
       {/* Category Icon */}
       <div
         className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-lg"

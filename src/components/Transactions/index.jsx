@@ -21,11 +21,38 @@ const Transactions = () => {
   const [addOpen, setAddOpen] = useState(false)
   const [editTxn, setEditTxn] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
+  const [highlightId, setHighlightId] = useState(null)
+  const openAddOnLoad = useStore(state => state.openAddOnLoad)
+  const setOpenAddOnLoad = useStore(state => state.setOpenAddOnLoad)
+  const addToast = useStore(state => state.addToast)
 
   const filtered = useMemo(() =>
     filterAndSortTransactions(transactions, { search, filterType, sortBy, sortOrder }),
     [transactions, search, filterType, sortBy, sortOrder]
   )
+
+  const exportCSV = (rows) => {
+    if (!rows || rows.length === 0) {
+      addToast({ title: 'No data to export', type: 'info' })
+      return
+    }
+    const headers = ['id','date','description','category','type','amount']
+    const csv = [headers.join(',')]
+    rows.forEach(r => {
+      const line = headers.map(h => `"${String(r[h] ?? '')}"`).join(',')
+      csv.push(line)
+    })
+    const blob = new Blob([csv.join('\n')], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `transactions_${new Date().toISOString().slice(0,10)}.csv`
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+    URL.revokeObjectURL(url)
+    addToast({ title: 'CSV exported', message: 'Transactions downloaded', type: 'success' })
+  }
 
   // If navigation requested from another page, scroll to and open edit for that txn
   React.useEffect(() => {
@@ -37,10 +64,21 @@ const Transactions = () => {
       if (isAdmin && target) {
         setEditTxn(target)
       }
+      // trigger highlight
+      setHighlightId(selectedTransactionId)
+      setTimeout(() => setHighlightId(null), 1000)
     }
     // clear the selection after handling
     setSelectedTransactionId(null)
   }, [selectedTransactionId])
+
+  // handle openAddOnLoad flag (from CTA)
+  React.useEffect(() => {
+    if (openAddOnLoad) {
+      setAddOpen(true)
+      setOpenAddOnLoad(false)
+    }
+  }, [openAddOnLoad])
 
   const handleSort = (col) => {
     if (sortBy === col) {
@@ -64,11 +102,16 @@ const Transactions = () => {
         title="Transactions"
         subtitle={`${filtered.length} of ${transactions.length} transactions`}
         action={
-          isAdmin && (
-            <button onClick={() => setAddOpen(true)} className="btn-primary">
-              <Plus className="w-4 h-4" /> Add Transaction
+          <div className="flex items-center gap-2">
+            <button onClick={() => exportCSV(filtered)} className="btn-secondary">
+              Export CSV
             </button>
-          )
+            {isAdmin && (
+              <button onClick={() => setAddOpen(true)} className="btn-primary">
+                <Plus className="w-4 h-4" /> Add Transaction
+              </button>
+            )}
+          </div>
         }
       />
 
@@ -158,6 +201,7 @@ const Transactions = () => {
                 isAdmin={isAdmin}
                 onEdit={setEditTxn}
                 onDelete={(id) => setDeleteConfirm(id)}
+                flash={highlightId === txn.id}
               />
             ))}
           </div>
@@ -167,7 +211,7 @@ const Transactions = () => {
       {/* Add Modal */}
       <Modal isOpen={addOpen} onClose={() => setAddOpen(false)} title="Add Transaction">
         <TransactionForm
-          onSubmit={(data) => { addTransaction(data); setAddOpen(false) }}
+          onSubmit={(data) => { addTransaction(data); setAddOpen(false); addToast({ title: 'Transaction added', type: 'success' }) }}
           onCancel={() => setAddOpen(false)}
         />
       </Modal>
@@ -176,7 +220,7 @@ const Transactions = () => {
       <Modal isOpen={!!editTxn} onClose={() => setEditTxn(null)} title="Edit Transaction">
         <TransactionForm
           initialData={editTxn}
-          onSubmit={(data) => { updateTransaction(editTxn.id, data); setEditTxn(null) }}
+          onSubmit={(data) => { updateTransaction(editTxn.id, data); setEditTxn(null); addToast({ title: 'Transaction updated', type: 'success' }) }}
           onCancel={() => setEditTxn(null)}
         />
       </Modal>
@@ -195,7 +239,7 @@ const Transactions = () => {
               Cancel
             </button>
             <button
-              onClick={() => { deleteTransaction(deleteConfirm); setDeleteConfirm(null) }}
+              onClick={() => { deleteTransaction(deleteConfirm); setDeleteConfirm(null); addToast({ title: 'Transaction deleted', type: 'success' }) }}
               className="flex-1 bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded-xl transition-all duration-200 text-sm"
             >
               Delete

@@ -19,13 +19,18 @@ export const Badge = ({ type, children }) => (
 )
 
 // ─── EmptyState ────────────────────────────────────────────────────────────
-export const EmptyState = ({ title = 'No data found', description = 'Try adjusting your filters.' }) => (
+export const EmptyState = ({ title = 'No data found', description = 'Try adjusting your filters.', cta }) => (
   <div className="flex flex-col items-center justify-center py-16 text-center animate-fade-in">
     <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-700/50 flex items-center justify-center mb-4">
       <Inbox className="w-8 h-8 text-slate-400" />
     </div>
     <p className="font-display font-semibold text-slate-700 dark:text-slate-300 mb-1">{title}</p>
-    <p className="text-sm text-slate-400 dark:text-slate-500 max-w-xs">{description}</p>
+    <p className="text-sm text-slate-400 dark:text-slate-500 max-w-xs mb-4">{description}</p>
+    {cta && (
+      <button onClick={cta.onClick} className="btn-primary">
+        {cta.label}
+      </button>
+    )}
   </div>
 )
 

@@ -48,6 +48,29 @@ const useStore = create(
 
       resetTransactions: () => set({ transactions: initialTransactions }),
 
+      // ─── UI helpers ───────────────────────────────────────────────
+      // For opening add modal when navigating from elsewhere (demo/CTA)
+      openAddOnLoad: false,
+      setOpenAddOnLoad: (v) => set({ openAddOnLoad: v }),
+
+      // Toasts
+      toasts: [],
+      addToast: (toast) => set((state) => ({ toasts: [...state.toasts, { id: Date.now(), ...toast }] })),
+      removeToast: (id) => set((state) => ({ toasts: state.toasts.filter(t => t.id !== id) })),
+      // Derived selectors
+      getTotalBalance: () => {
+        const tx = get().transactions || []
+        return tx.reduce((acc, t) => t.type === 'income' ? acc + t.amount : acc - t.amount, 0)
+      },
+      getTotalIncome: () => {
+        const tx = get().transactions || []
+        return tx.filter(t => t.type === 'income').reduce((acc, t) => acc + t.amount, 0)
+      },
+      getTotalExpenses: () => {
+        const tx = get().transactions || []
+        return tx.filter(t => t.type === 'expense').reduce((acc, t) => acc + t.amount, 0)
+      },
+
       // ─── Filters ──────────────────────────────────────────────────
       search: '',
       filterType: 'all', // 'all' | 'income' | 'expense'

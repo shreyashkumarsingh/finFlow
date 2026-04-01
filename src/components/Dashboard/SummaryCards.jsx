@@ -46,7 +46,7 @@ const SummaryCards = () => {
         value={formatCurrency(balance, true)}
         icon={Wallet}
         color={balance >= 0 ? 'text-slate-800 dark:text-slate-100' : 'text-red-500'}
-        glowClass="bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400"
+        glowClass="bg-gradient-to-br from-indigo-500 to-blue-500 text-white"
         subtitle={
           <p className="text-xs text-slate-400 dark:text-slate-500">
             Savings rate: <span className="font-semibold text-emerald-500">{savingsRate}%</span>

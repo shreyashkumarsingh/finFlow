@@ -5,6 +5,7 @@ import Header from '../components/UI/Header'
 import Dashboard from '../components/Dashboard'
 import Transactions from '../components/Transactions'
 import Insights from '../components/Insights'
+import ToastContainer from '../components/UI/Toast'
 
 const PAGES = {
   dashboard:    Dashboard,
@@ -58,6 +59,7 @@ const Layout = () => {
             <PageComponent key={activePage} />
           </div>
         </main>
+        <ToastContainer />
         <footer className="py-3 text-center text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-700/50 bg-white/0">
           Made in India • © 2026
         </footer>
