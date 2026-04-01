@@ -1,0 +1,34 @@
+# Node
+node_modules/
+package-lock.json
+.env
+.env.local
+.DS_Store
+.vscode/
+dist/
+.build/
+.cache/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vite
+/.vite
+
+# Mac
+*.DS_Store
+
+# Logs
+logs
+*.log
+logs/**
+
+# IDEs
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+public/build/
+
