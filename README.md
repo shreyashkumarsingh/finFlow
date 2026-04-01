@@ -2,9 +2,9 @@
 
 A production-grade fintech dashboard designed with real-world UX, analytics, and role-based workflows in mind.
 
-🚀Live demo : https://finflow-weld.vercel.app
+🚀Live demo: https://finflow-weld.vercel.app
 
-📂Respository : https://github.com/shreyashkumarsingh/finFlow
+📂Respository: https://github.com/shreyashkumarsingh/finFlow
 
 ---
 
