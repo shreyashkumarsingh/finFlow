@@ -182,7 +182,11 @@ After configuring, Vercel will build and provide a production URL automatically.
 
 ## 📸 Screenshots
 
-Add screenshots to this README by replacing the placeholders below. Example images are expected in the `public/` folder.
+<img width="1894" height="877" alt="image" src="https://github.com/user-attachments/assets/c9494234-2708-4964-b2ac-04f37febb919" />
+
+<img width="1896" height="880" alt="image" src="https://github.com/user-attachments/assets/6e4285df-0cf3-4c2e-bb09-df0341d5e338" />
+
+<img width="1885" height="869" alt="image" src="https://github.com/user-attachments/assets/95cf504e-a81c-4eed-8904-688949a8c94c" />
 
 - Dashboard (Dark mode): ![Dashboard Dark](public/screenshot-dashboard-dark.png)
 - Transactions: ![Transactions](public/screenshot-transactions.png)
