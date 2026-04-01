@@ -56,7 +56,7 @@ export const Divider = ({ className = '' }) => (
 export const SectionHeader = ({ title, subtitle, action }) => (
   <div className="flex items-start justify-between mb-6">
     <div>
-      <h2 className="font-display font-semibold text-lg text-slate-800 dark:text-slate-100">{title}</h2>
+      <h2 className="font-display font-semibold text-2xl text-slate-800 dark:text-slate-100">{title}</h2>
       {subtitle && <p className="text-sm text-slate-400 dark:text-slate-500 mt-0.5">{subtitle}</p>}
     </div>
     {action && <div>{action}</div>}

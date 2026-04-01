@@ -65,14 +65,14 @@ const Insights = () => {
   const gridColor = darkMode ? '#1e293b' : '#f1f5f9'
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-8 animate-fade-in">
       <SectionHeader
         title="Insights"
         subtitle="Smart analytics derived from your transactions"
       />
 
       {/* Key Metrics Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
         <InsightCard
           icon={TrendingDown}
           iconBg="bg-red-50 dark:bg-red-900/30"
@@ -112,7 +112,7 @@ const Insights = () => {
       </div>
 
       {/* Highlights Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {/* Highest Spending Category */}
         {insights.highestCategory && (
           <Card className="p-5 animate-slide-up" style={{ animationDelay: '320ms' }}>

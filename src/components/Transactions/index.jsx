@@ -97,7 +97,7 @@ const Transactions = () => {
   }
 
   return (
-    <div className="animate-fade-in space-y-6">
+    <div className="animate-fade-in space-y-8">
       <SectionHeader
         title="Transactions"
         subtitle={`${filtered.length} of ${transactions.length} transactions`}

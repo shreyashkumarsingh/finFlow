@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
-import { TrendingUp, TrendingDown, Wallet, ArrowUpRight } from 'lucide-react'
+import { TrendingUp, TrendingDown, Wallet } from 'lucide-react'
 import useStore from '../../store/useStore'
 import { getTotalBalance, getTotalIncome, getTotalExpenses, formatCurrency } from '../../utils/finance'
-import { Card, ChangeIndicator } from '../UI'
+import { Card } from '../UI'
 
 const StatCard = ({ title, value, subtitle, icon: Icon, color, glowClass, delay = 0 }) => (
   <Card
@@ -12,7 +12,7 @@ const StatCard = ({ title, value, subtitle, icon: Icon, color, glowClass, delay 
     <div className="flex items-start justify-between mb-4">
       <div>
         <p className="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1">{title}</p>
-        <p className={`font-display font-bold text-2xl tracking-tight ${color} number-pop`}>
+        <p className={`font-display font-bold text-3xl tracking-tight ${color} number-pop`}>
           {value}
         </p>
       </div>
@@ -40,12 +40,12 @@ const SummaryCards = () => {
   const savingsRate = income > 0 ? ((income - expenses) / income * 100).toFixed(1) : '0.0'
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
       <StatCard
         title="Total Balance"
         value={formatCurrency(balance, true)}
         icon={Wallet}
-        color={balance >= 0 ? 'text-slate-800 dark:text-slate-100' : 'text-red-500'}
+        color={balance >= 0 ? 'text-indigo-700 dark:text-indigo-200' : 'text-red-500'}
         glowClass="bg-gradient-to-br from-indigo-500 to-blue-500 text-white"
         subtitle={
           <p className="text-xs text-slate-400 dark:text-slate-500">

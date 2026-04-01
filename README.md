@@ -1,8 +1,18 @@
-# FinFlow — Finance Dashboard
+# FinFlow — A Modern Fintech Dashboard for Smart Financial Tracking
 
 A modern, production-quality finance dashboard built with React, Tailwind CSS, Recharts, and Zustand.
 
 ---
+
+## 🎯 How This Meets Assignment Requirements
+
+- **Dashboard Overview** → Summary cards + charts
+- **Transactions** → Full CRUD + filters + sorting
+- **Role-Based UI** → Admin/Viewer simulation
+- **Insights** → Dynamic analytics
+- **State Management** → Zustand with persistence
+- **UX** → Empty states, toasts, navigation highlights
+
 
 ## 🚀 Quick Start
 
