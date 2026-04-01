@@ -2,10 +2,10 @@
 
 A modern, production-quality finance dashboard built with React, Tailwind CSS, Recharts, and Zustand.
 
-
 Live demo : https://finflow-weld.vercel.app
 
 Respository : https://github.com/shreyashkumarsingh/finFlow
+
 ---
 
 ## 🎯 How This Meets Assignment Requirements
